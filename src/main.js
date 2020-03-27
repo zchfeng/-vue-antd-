@@ -7,6 +7,9 @@ import router from './router'
 import "amfe-flexible" //移动端适配工具
 import FastClick from "fastclick" //解决移动端click事件延迟问题
 FastClick.attach(document.body)
+import Api from './api/index.js';
+
+Vue.prototype.$api = Api;
 
 Vue.config.productionTip = false
 
