@@ -11,15 +11,15 @@
             />
             <van-field
                 v-model="password"
-                type="password1"
-                name="password1"
+                type="password"
+                name="password"
                 label="密码"
                 placeholder="密码"
                 :rules="[{ required: true, message: '请填写密码' }]"
             />
             <van-field
-                v-model="password"
-                type="password2"
+                v-model="password2"
+                type="password"
                 name="password2"
                 label="确认密码"
                 placeholder="确认密码"
@@ -47,13 +47,18 @@ export default {
     data(){
         return {
             username: '',
-            password1: '',
+            password: '',
             password2:''
         }
     },
     methods: {
         onSubmit(values) {
-            console.log('submit', values);
+            this.$api.post('/register',values,response => {
+                if (response.status >= 200 && response.status < 300) {
+                    console.log(response.data);
+                } else {
+                    console.log(response.message);
+                }})
         },
         login(){
             this.$router.push('/login')
